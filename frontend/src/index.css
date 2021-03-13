@@ -1,13 +1,63 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.navbar {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #fff;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.landing{
+  background-image: url("./img/showcase.jpg");
+  height: 91.2vh;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.dark-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.landing-inner{
+    height: 100%;
+    color: #fff;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.landing-inner h1{
+  color:#fff;
+  font-size: 56px;
+  font-weight: 900;
+}
+
+.landing-inner p{
+  font-size: 20px;
+}
+
+.login-form{
+    width: 400px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px 30px;
+    border-radius: 10px;
+}
+
+.login-form h4{
+  text-align: center;
+  margin:10px 0;
+}
+
+.language-box{
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
 }
