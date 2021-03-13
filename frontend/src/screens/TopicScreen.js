@@ -26,7 +26,7 @@ const TopicScreen = () => {
                             <Col key={index} md={4} style={{display:'flex'}}>
                             <div className="language-box">
                                 <h1 className="language-heading">{category.name}</h1>
-                                <p className="language-description">{category.shortDescription.split(0,60)}...</p>
+                                <p className="language-description">{category.shortDescription.slice(0,60)}...</p>
                                 <Link to={`level/${category._id}`} className="btn btn-primary language-button">Start Pracitce</Link>
                             </div>
                         </Col>

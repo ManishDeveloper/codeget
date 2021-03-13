@@ -25,7 +25,7 @@ router.get('/',auth, async (req,res)=>{
 
 
 //@route    GET /api/quiz/:id
-//@desc     Get All Quiz
+//@desc     Quiz By Id
 //@access   Private
 router.get('/:id',auth, async (req,res)=>{
 
@@ -39,6 +39,24 @@ router.get('/:id',auth, async (req,res)=>{
         return res.status(500).json({error:'Server Error'})
     }
 });
+
+
+//@route    GET /api/quiz/:level/:id
+//@desc     Quiz By Category and Level
+//@access   Private
+router.get('/:level/:id',auth, async (req,res)=>{
+
+    try {
+        let question = await Quiz.find({category:req.params.id,level:req.params.level});
+
+        return res.status(200).json(question);
+        
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).json({error:'Server Error'})
+    }
+});
+
 
 //@route    POST /api/quiz/add
 //@desc     Add New Quiz Answer

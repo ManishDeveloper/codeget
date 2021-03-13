@@ -15,7 +15,7 @@ const Menubar = () => {
     return (
         <>
 <Navbar bg="dark" variant="dark" expand="lg">
-    <Container>
+    <Container fluid>
         <LinkContainer to={isAuthenticated ? '/topic' : '/'}>
         <Navbar.Brand>Codeget</Navbar.Brand>
         </LinkContainer>

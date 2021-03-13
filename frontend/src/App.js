@@ -26,7 +26,7 @@ function App() {
         <Route exact path="/" component={HomeScreen} />
         <PrivateRoute exact path="/topic" component={TopicScreen} />
         <PrivateRoute exact path="/level/:id" component={LevelScreen} />
-        <PrivateRoute exact path="/level/question/:id" component={QuestionScreen} />
+        <PrivateRoute exact path="/question/:level/:categoryId" component={QuestionScreen} />
         <Route exact path="/login" component={LoginScreen} />
         <Route exact path="/register" component={RegisterScreen} />
       </Switch>

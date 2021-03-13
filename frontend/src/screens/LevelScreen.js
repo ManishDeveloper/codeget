@@ -17,21 +17,21 @@ const LevelScreen = ({match}) => {
                             <div className="language-box">
                                 <h1 className="language-heading">Beginner</h1>
                                 <p className="language-description">Start from the beginner level with simple Questions.</p>
-                                <Link to={`question/${match.params.id}`} className="btn btn-primary language-button">Start Pracitce</Link>
+                                <Link to={`/question/1/${match.params.id}`} className="btn btn-primary language-button">Start Pracitce</Link>
                             </div>
                         </Col>
                         <Col md={4} style={{display:'flex'}}>
                             <div className="language-box">
                                 <h1 className="language-heading">Intermediate</h1>
                                 <p className="language-description">You have basic Knowdelge then Start from the Intermediate level.</p>
-                                <Link to={`question/${match.params.id}`} className="btn btn-primary language-button">Start Pracitce</Link>
+                                <Link to={`/question/2/${match.params.id}`} className="btn btn-primary language-button">Start Pracitce</Link>
                             </div>
                         </Col>
                         <Col md={4} style={{display:'flex'}}>
                             <div className="language-box">
                                 <h1 className="language-heading">Advance</h1>
                                 <p className="language-description">Go with Advance Question and sharp your knowdelge.</p>
-                                <Link to={`question/${match.params.id}`} className="btn btn-primary language-button">Start Pracitce</Link>
+                                <Link to={`/question/3/${match.params.id}`} className="btn btn-primary language-button">Start Pracitce</Link>
                             </div>
                         </Col>
                     </Row>
