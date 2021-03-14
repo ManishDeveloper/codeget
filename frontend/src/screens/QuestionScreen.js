@@ -1,6 +1,8 @@
 import React,{useEffect,useState} from 'react';
 import {useDispatch,useSelector} from "react-redux";
 import { Container, Row,Col } from 'react-bootstrap';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { dark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import {Link} from "react-router-dom";
 import Loader from '../components/Loader';
 import { getQuestion, getNextQuestion } from '../redux/actions/questionActions';
@@ -42,7 +44,7 @@ const QuestionScreen = ({match}) => {
                             <ul>
                                 {questionsList.map((quiz,index)=>(
                                 
-                            <li className={currentQuestionNum === index && "active"} key={index} onClick={()=>{quizShowHandler(index)}}>Exercise {index+1}</li>
+                            <li className={`${currentQuestionNum === index && "active"}`} key={index} onClick={()=>{quizShowHandler(index)}}>Exercise {index+1}</li>
                                 ))}
                                 
                             </ul>
@@ -52,6 +54,9 @@ const QuestionScreen = ({match}) => {
                 <Col md={9}>
                     <div className="answer-box">
                         <h4>{currentQuestionNum+1} : {singleQuestion.question}</h4>
+                    <SyntaxHighlighter language="javascript" style={dark}>
+                        {singleQuestion.answer}
+                    </SyntaxHighlighter>
                     </div>
                 </Col>
             </Row>

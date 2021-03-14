@@ -1,6 +1,7 @@
 import {USER_DETAILS_REQUEST,USER_DETAILS_SUCCESS,USER_DETAILS_FAIL,USER_LOGIN_REQUEST,USER_LOGIN_SUCCESS,USER_LOGIN_FAIL, USER_LOGOUT} from "../types";
 import axios from "axios";
 import setAuthToken from "../../utils/setAuthToken";
+import { toast } from 'react-toastify';
 
 //get auth user
 export const getUserDetails = () => async dispatch => {
@@ -41,9 +42,12 @@ export const userLogin = (email, password) => async dispatch => {
             type:USER_LOGIN_SUCCESS,
             payload:res.data
         });
+
+        await toast.success("Successfully Login!");
         
     } catch (error) {
         console.log(error.message);
+        await toast.error(error.response.data.error);
         await dispatch({type:USER_LOGIN_FAIL});
     }
 }

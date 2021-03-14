@@ -3,7 +3,7 @@ import {USER_DETAILS_REQUEST,USER_DETAILS_SUCCESS,USER_DETAILS_FAIL,USER_LOGIN_R
 const initialState = {
     loading:true,
     loading2:false,
-    user:null,
+    userInfo:null,
     isAuthenticated:false,
     token:localStorage.token ? localStorage.token : null
 }
@@ -34,7 +34,7 @@ const userReducer = (state=initialState,action) => {
                 loading:false,
                 loading2:false,
                 isAuthenticated:true,
-                user:payload
+                userInfo:payload
             }
         case USER_DETAILS_FAIL:
         case USER_LOGIN_FAIL:
@@ -42,7 +42,7 @@ const userReducer = (state=initialState,action) => {
             localStorage.removeItem("token");
             return {
                 ...state,
-                user:null,
+                userInfo:null,
                 loading:false,
                 loading2:false,
                 isAuthenticated:false,

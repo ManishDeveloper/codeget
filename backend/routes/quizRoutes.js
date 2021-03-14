@@ -13,7 +13,7 @@ const Quiz = require("../models/quizModel");
 router.get('/',auth, async (req,res)=>{
 
     try {
-        let allQuiz = await Quiz.find({});
+        let allQuiz = await Quiz.find({}).populate('category','name shortDescription');
 
         return res.status(200).json(allQuiz);
         
@@ -62,7 +62,9 @@ router.get('/:level/:id',auth, async (req,res)=>{
 //@desc     Add New Quiz Answer
 //@access   Private
 router.post('/add/:category',[auth,
-    [check('question','Question Name is Required!').notEmpty()]], 
+    [check('question','Question Name is Required!').notEmpty(),
+    check('category','Category is Required!').notEmpty(),
+    check('answer','Answer is Required!').notEmpty(),]], 
     async (req,res)=>{
     
     let errors = validationResult(req);
@@ -79,7 +81,9 @@ router.post('/add/:category',[auth,
 
         await newQuestion.save();
 
-        return res.status(201).json(newQuestion);
+        const quizWithCategory = await Quiz.findById(newQuestion._id).populate('category','name shortDescription')
+
+        return res.status(201).json(quizWithCategory);
         
     } catch (error) {
         console.log(error.message);

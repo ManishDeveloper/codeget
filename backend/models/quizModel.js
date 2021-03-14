@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const quizSchema = mongoose.Schema({
     category:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'categories'
+        ref:'category'
     },
     question:{
         type:String,
