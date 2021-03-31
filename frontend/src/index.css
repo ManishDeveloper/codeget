@@ -102,7 +102,13 @@
   color:#ffffff;
   cursor: pointer;
   border-bottom: 1px solid #4f4f4f;
-  padding:10px 16px;
+}
+
+.exercise-list ul li a{
+  text-decoration: none;
+  color:#ffffff;
+  display: block;
+  padding: 10px 16px;
 }
 
 .exercise-list ul li:hover{
@@ -110,8 +116,16 @@
   color:#555555;
 }
 
+.exercise-list ul li:hover a{
+  color:#555555;
+}
+
 .exercise-list ul li.active{
   background-color:#ffffff;
+  color:#555555;
+}
+
+.exercise-list ul li.active a{
   color:#555555;
 }
 
@@ -138,4 +152,9 @@
   font-size: 18px;
   right:23px;
   top:20px;
+}
+
+.delete-qus-button:hover{
+  color:red;
+  cursor: pointer;
 }

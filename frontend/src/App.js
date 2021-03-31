@@ -29,7 +29,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={HomeScreen} />
         <PrivateRoute exact path="/topic" component={TopicScreen} />
-        <AdminRoute exact path="/dashboard" component={DashboardScreen} />
+        <AdminRoute exact path="/dashboard/:page/:id?" component={DashboardScreen} />
         <PrivateRoute exact path="/level/:id" component={LevelScreen} />
         <PrivateRoute exact path="/question/:level/:categoryId" component={QuestionScreen} />
         <Route exact path="/login" component={LoginScreen} />

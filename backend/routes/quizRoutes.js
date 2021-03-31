@@ -93,6 +93,63 @@ router.post('/add/:category',[auth,
 
 
 
+//@route    POST /api/quiz/update/:id
+//@desc     Update Quiz
+//@access   Private
+router.patch('/update/:id',[auth,
+    [check('question','Question Name is Required!').notEmpty(),
+    check('category','Category is Required!').notEmpty(),
+    check('answer','Answer is Required!').notEmpty(),]], 
+    async (req,res)=>{
+    
+    let errors = validationResult(req);
+
+    if(!errors.isEmpty()){
+        return res.status(400).json({error:errors.array()[0].msg});
+    }
+
+    let {question,description,image,level,answer,category} = req.body;
+    
+    try {
+
+        let updateFields = {}
+
+        if(question) updateFields.question = question;
+        if(description) updateFields.description = description;
+        if(level) updateFields.level = level;
+        if(category) updateFields.category = category;
+
+        let updateQuiz = await Quiz.findByIdAndUpdate(req.params.id,updateFields,{new:true}).populate('category','name shortDescription');
+
+        return res.status(201).json(updateQuiz);
+        
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).json({error:'Server Error'});
+    }
+});
+
+
+
+//@route    POST /api/quiz/delete/:id
+//@desc     Add New Quiz Answer
+//@access   Private
+router.delete('/delete/:id', auth, async (req,res)=>{
+    
+    try {
+
+        let quiz = await Quiz.findByIdAndRemove(req.params.id);
+
+        return res.status(200).send('quiz delete');
+        
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).json({error:'Server Error'});
+    }
+});
+
+
+
 //@route    POST /api/quiz/like/:id
 //@desc     Like Quiz
 //@access   Private

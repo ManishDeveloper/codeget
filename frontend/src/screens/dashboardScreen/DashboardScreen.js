@@ -6,12 +6,15 @@ import Loader from '../../components/Loader';
 import { getAllCategory, getAllQuestion } from '../../redux/actions/dashboardActions';
 import AllQuestion from './AllQuestion';
 import AddQuestion from './AddQuestion';
+import LeftSidebar from './LeftSidebar';
+import UpdateQuestion from './UpdateQuestion';
 
-const DashboardScreen = () => {
+const DashboardScreen = ({match}) => {
+    let currentPage = match.params.page;
 
-    const [currentPage, setCurrentPage] = useState("dashboard");
-
-    const [pageLoading, setpageLoading] = useState(false);
+    if(currentPage !== "home" &&  currentPage !== "add" && currentPage !== "update"){
+        currentPage = "home";
+    }
 
     const {loading, questionsList,currentQuestionNum} = useSelector(state=>state.dashboardQuestions);
 
@@ -24,46 +27,26 @@ const DashboardScreen = () => {
     
     },[]);
 
-    const changePage = (e) => {
-        if(currentPage !== e.target.id){
-            setCurrentPage(e.target.id);
-            setpageLoading(true);
-            setTimeout(()=>{setpageLoading(false)},1000);
-        }
+    let updateQuiz = null;
+
+    if(match.params.id){
+        updateQuiz = questionsList.find((quiz)=>quiz._id === match.params.id.toString());
     }
+    
    
     return (
         <>
         <Container fluid>
             <Row>
                 <Col md={3} style={{paddingLeft:0}}>
-                    <div className="question-list-sidebar">
-                        <div className="exercise-count">
-                            <h5>Dashboard Panel</h5>
-                        </div>
-                        <div className="exercise-list">
-                            <ul>
-                            <li className={`${currentPage === "dashboard" && "active"}`} id="dashboard" onClick={changePage}>All Questions</li>
-                            <li className={`${currentPage === "addquestion" && "active"}`} id="addquestion" onClick={changePage}>Add Questions</li>
-                            <li>All Categories</li>
-                            <li>Add Category</li>
-                            <li>All User</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <LeftSidebar currentPage={currentPage} />
                 </Col>
                 <Col md={9}>
                     <div className="answer-box">
                         {loading ? <Loader /> :(
                         <>
-                        {pageLoading ? <Loader /> : (
-                        <>
-                        {currentPage === "dashboard" && <AllQuestion questionsList={questionsList.reverse()} />}
-
-                        {currentPage === "addquestion" && <AddQuestion questionsList={questionsList}  />}
-                        </>
+                        {currentPage==="add" ? <AddQuestion /> : (currentPage==="update") ? <UpdateQuestion quizId={match.params.id} updateQuiz={updateQuiz} /> : <AllQuestion questionsList={questionsList} />}
                         
-                        )}
                         </>
                         )}
                         

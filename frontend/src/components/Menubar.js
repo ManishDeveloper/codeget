@@ -25,7 +25,7 @@ const Menubar = () => {
         <LinkContainer to={isAuthenticated ? '/topic' : '/'}>
             <Nav.Link><i className="fas fa-home"></i> Home</Nav.Link>
         </LinkContainer>
-        {isAuthenticated && userInfo.isAdmin && <LinkContainer to="/dashboard">
+        {isAuthenticated && userInfo.isAdmin && <LinkContainer to="/dashboard/home">
             <Nav.Link>Dashboard</Nav.Link>
         </LinkContainer>}
         {isAuthenticated ? (

@@ -1,7 +1,16 @@
 import React from 'react';
 import {Row,Dropdown,Col,Form,InputGroup,FormControl,Table} from "react-bootstrap";
+import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import { deleteQuiz } from '../../redux/actions/dashboardActions';
 
 const AllQuestion = ({questionsList}) => {
+
+    const dispatch = useDispatch();
+
+    const deleteQuizHandler = (e) => {
+        dispatch(deleteQuiz(e.target.id));
+    }
     return (
         <>
            <Row>
@@ -49,8 +58,8 @@ const AllQuestion = ({questionsList}) => {
                             <td>{quiz.question}</td>
                             <td>{quiz.category.name}</td>
                             <td>{quiz.level===1 ? "Beginner" : quiz.level===2 ? "Intermediate" : "Advance"}</td>
-                            <td>Edit</td>
-                            <td>Delete</td>
+                            <td className="text-center"><Link to={`/dashboard/update/${quiz._id}`}><i id={quiz._id} className="fas fa-edit"></i></Link> </td>
+                            <td className="text-center"><i id={quiz._id} onClick={deleteQuizHandler} className="fas fa-trash delete-qus-button"></i></td>
                             </tr>
                         ))}
                     </tbody>
