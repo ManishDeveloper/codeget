@@ -40,13 +40,12 @@ export const getAllCategory = () => async dispatch => {
 
 
 //Add New Question
-export const addNewQuestion = (question,category,level,answer) => async dispatch => {
-    const setLevel = await Number(level);
+export const addNewQuestion = (question,category,answer) => async dispatch => {
 
     try {
         await dispatch({type:ADD_QUESTION_REQUEST});
 
-    let res = await axios.post(`/api/quiz/add/${category}`,{question,level: setLevel,answer});
+    let res = await axios.post(`/api/quiz/add/${category}`,{question,answer});
 
         await dispatch({
             type:ADD_QUESTION_SUCCESS,
@@ -86,6 +85,7 @@ export const updateQuestion = (quizId,question,category,answer) => async dispatc
 }
 
 
+//Delete Quiz
 export const deleteQuiz = (id) => async dispatch => {
 
     try {
