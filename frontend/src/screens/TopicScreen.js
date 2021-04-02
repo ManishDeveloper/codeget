@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react'
-import { Container,Row,Col,Button } from 'react-bootstrap';
+import { Container,Row,Col} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import {useDispatch,useSelector} from 'react-redux';
 import Loader from '../components/Loader';
@@ -23,7 +23,7 @@ const TopicScreen = () => {
                     <Container className="text-center my-5">
                     <Row>
                         {categories.map((category,index)=>(
-                            <Col key={index} md={4} style={{display:'flex'}}>
+                            <Col key={index} md={4} className="d-flex mb-4">
                             <div className="language-box">
                                 <h1 className="language-heading">{category.name}</h1>
                                 <p className="language-description">{category.shortDescription.slice(0,60)}...</p>

@@ -25,6 +25,7 @@
     height: 100%;
     color: #fff;
     display: flex;
+    text-align: center;
     flex-flow: column;
     justify-content: center;
     align-items: center;
@@ -69,6 +70,31 @@
   height: 60px;
   font-size: 20px;
   background-color: #f1f1f1;
+}
+
+.form-control {
+  color: #55595c;
+  background-color: #f7f7f9;
+  border-color: #5a5a5a;
+  outline: 0;
+  box-shadow: 0 0 0 0.1rem rgb(26 26 26 / 25%);
+}
+
+pre{
+  white-space: pre-wrap !important;
+}
+
+pre code {
+  font-size: 16px;
+  white-space: pre-line !important;
+}
+
+button:disabled{
+  cursor: not-allowed;
+}
+
+strong{
+  font-weight: bold;
 }
 
 
@@ -157,4 +183,26 @@
 .delete-qus-button:hover{
   color:red;
   cursor: pointer;
+}
+
+.sidebar-mobile{
+  display: block;
+}
+
+@media (max-width:576px){
+  .login-form{
+    width:320px;
+  }
+  .sidebar-mobile{
+    display: none;
+    position:absolute;
+    z-index: 1;
+    padding-right: 0;
+  }
+  .answer-box{
+    padding-top: 5px;
+  }
+  .top-button{
+    display: block !important;
+  }
 }

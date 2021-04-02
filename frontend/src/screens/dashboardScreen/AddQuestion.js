@@ -1,23 +1,19 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState} from 'react';
 import {Form,Button} from "react-bootstrap";
 import {useSelector,useDispatch} from "react-redux";
+import {useHistory} from "react-router-dom";
 import { addNewQuestion } from '../../redux/actions/dashboardActions';
 
 const AddQuestion = () => {
-    const [formData,setFormData] = useState({
-    question:"",description:"",image:"",category:null,level:null,answer:""});
-
-    const [descToggle,setDescToggle] = useState(false);
+    const [formData,setFormData] = useState({question:"",category:null,answer:""});
 
     const dispatch = useDispatch();
 
-    const {question,description,image,category,answer,level} = formData;
+    const history = useHistory();
+
+    const {question,category,answer} = formData;
 
     const categoryList = useSelector(state=>state.dashboardQuestions.categoryList);
-
-    const descToggleHandler = () => {
-        setDescToggle(!descToggle);
-    }
 
     const changeFields = (e) => {
         e.preventDefault();
@@ -25,8 +21,8 @@ const AddQuestion = () => {
     }
     const addQuestionHandler = (e) => {
         e.preventDefault();
-        dispatch(addNewQuestion(question,category,level,answer));
-        setFormData({question:"",description:"",image:"",category:null,level:null,answer:""});
+        dispatch(addNewQuestion(question,category,answer));
+        history.push("/dashboard/home");
     }
     return (
         <div className="add-question">
@@ -34,7 +30,7 @@ const AddQuestion = () => {
             <Form onSubmit={addQuestionHandler}>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Question</Form.Label>
-                        <Form.Control type="text" placeholder="Type Question" name="question" value={question} onChange={changeFields} />
+                        <Form.Control as="textarea" placeholder="Type Question" name="question" rows="3" value={question} onChange={changeFields} />
                     </Form.Group>
 
                     <Form.Group controlId="exampleForm.ControlSelect1">
@@ -46,25 +42,6 @@ const AddQuestion = () => {
                         ))}
                         </Form.Control>
                     </Form.Group>
-
-                    <Form.Group controlId="exampleForm.ControlSelect1">
-                        <Form.Label>Select Level</Form.Label>
-                        <Form.Control as="select" name="level" onChange={changeFields}>
-                        <option value="1">Select Level</option>
-                        <option value="1">Beginner</option>
-                        <option value="2">Intermediate</option>
-                        <option value="3">Advance</option>
-                        </Form.Control>
-                    </Form.Group>
-
-                    <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" onClick={descToggleHandler} label="Add Description?" />
-                    </Form.Group>
-
-                    {descToggle && <Form.Group controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Question Description</Form.Label>
-                        <Form.Control as="textarea" name="description" value={description} onChange={changeFields} rows={3} />
-                    </Form.Group>}
 
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Answer</Form.Label>

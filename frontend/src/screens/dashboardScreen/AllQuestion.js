@@ -41,7 +41,7 @@ const AllQuestion = ({questionsList}) => {
             <Row>
                 <Col>
                 <Table striped bordered hover>
-                    <thead>
+                    <thead style={{backgroundColor:'#555555',color:'#ffffff'}}>
                         <tr>
                         <th>#</th>
                         <th>Question</th>

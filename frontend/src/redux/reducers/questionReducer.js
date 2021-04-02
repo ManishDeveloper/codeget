@@ -1,11 +1,9 @@
-import {QUESTION_REQUEST,QUESTION_SUCCESS,QUESTION_FAIL,GET_NEXT_QUESTION} from "../types";
+import {QUESTION_REQUEST,QUESTION_SUCCESS,QUESTION_FAIL} from "../types";
 
 const initialState = {
     loading:true,
     questionsList:[],
-    success:false,
-    currentQuestionNum:0,
-    singleQuestion:[]
+    success:false
 }
 const questionReducer = (state=initialState,action) => {
     let {type,payload} = action;
@@ -21,16 +19,8 @@ const questionReducer = (state=initialState,action) => {
                 ...state,
                 loading:false,
                 success:true,
-                questionsList:payload,
-                singleQuestion:payload[0]
+                questionsList:payload
             }
-        case GET_NEXT_QUESTION:
-            return {
-            ...state,
-            loading:false,
-            singleQuestion:state.questionsList[payload],
-            currentQuestionNum:payload
-        }
         case QUESTION_FAIL:
             return {
                 ...state,

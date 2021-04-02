@@ -1,7 +1,6 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect} from 'react';
 import {useDispatch,useSelector} from "react-redux";
 import { Container, Row,Col} from 'react-bootstrap';
-import {Link, Switch, Route} from "react-router-dom";
 import Loader from '../../components/Loader';
 import { getAllCategory, getAllQuestion } from '../../redux/actions/dashboardActions';
 import AllQuestion from './AllQuestion';
@@ -16,7 +15,7 @@ const DashboardScreen = ({match}) => {
         currentPage = "home";
     }
 
-    const {loading, questionsList,currentQuestionNum} = useSelector(state=>state.dashboardQuestions);
+    const {loading, questionsList} = useSelector(state=>state.dashboardQuestions);
 
     const dispatch = useDispatch();
 

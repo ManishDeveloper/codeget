@@ -65,12 +65,11 @@ export const addNewQuestion = (question,category,level,answer) => async dispatch
 
 
 //Update Question
-export const updateQuestion = (quizId,question,category,level,answer) => async dispatch => {
-    const setLevel = await Number(level);
+export const updateQuestion = (quizId,question,category,answer) => async dispatch => {
 
     try {
 
-    let res = await axios.patch(`/api/quiz/update/${quizId}`,{category,question,level: setLevel,answer});
+    let res = await axios.patch(`/api/quiz/update/${quizId}`,{category,question,answer});
 
         await dispatch({
             type:UPDATE_QUESTION_SUCCESS,

@@ -1,13 +1,13 @@
-import {QUESTION_REQUEST,QUESTION_SUCCESS,QUESTION_FAIL,GET_NEXT_QUESTION} from "../types";
+import {QUESTION_REQUEST,QUESTION_SUCCESS,QUESTION_FAIL} from "../types";
 import axios from "axios";
 
 //get question
-export const getQuestion = (level,category) => async dispatch => {
+export const getQuestion = (category) => async dispatch => {
 
     try {
         dispatch({type:QUESTION_REQUEST});
 
-        let res = await axios.get(`/api/quiz/${level}/${category}`)
+        let res = await axios.get(`/api/quiz/category/${category}`)
 
         dispatch({
             type:QUESTION_SUCCESS,
@@ -17,14 +17,4 @@ export const getQuestion = (level,category) => async dispatch => {
         console.log(error.message);
         dispatch({type:QUESTION_FAIL});
     }
-}
-
-
-export const getNextQuestion = (quizNumber) => async dispatch => {
-
-    await dispatch({
-        type: GET_NEXT_QUESTION,
-        payload:quizNumber
-    })
-    
 }

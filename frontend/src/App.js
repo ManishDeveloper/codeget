@@ -31,7 +31,7 @@ function App() {
         <PrivateRoute exact path="/topic" component={TopicScreen} />
         <AdminRoute exact path="/dashboard/:page/:id?" component={DashboardScreen} />
         <PrivateRoute exact path="/level/:id" component={LevelScreen} />
-        <PrivateRoute exact path="/question/:level/:categoryId" component={QuestionScreen} />
+        <PrivateRoute exact path="/question/:partNum/:categoryId" component={QuestionScreen} />
         <Route exact path="/login" component={LoginScreen} />
         <Route exact path="/register" component={RegisterScreen} />
       </Switch>

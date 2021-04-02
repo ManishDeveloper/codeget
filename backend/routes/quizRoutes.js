@@ -40,6 +40,21 @@ router.get('/:id',auth, async (req,res)=>{
     }
 });
 
+//@route    GET /api/quiz/category/:id
+//@desc     Quiz By Category ID
+//@access   Private
+router.get('/category/:id',auth, async (req,res)=>{
+
+    try {
+        let question = await Quiz.find({category:req.params.id});
+
+        return res.status(200).json(question);
+        
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).json({error:'Server Error'})
+    }
+});
 
 //@route    GET /api/quiz/:level/:id
 //@desc     Quiz By Category and Level
@@ -118,6 +133,7 @@ router.patch('/update/:id',[auth,
         if(description) updateFields.description = description;
         if(level) updateFields.level = level;
         if(category) updateFields.category = category;
+        if(answer) updateFields.answer = answer;
 
         let updateQuiz = await Quiz.findByIdAndUpdate(req.params.id,updateFields,{new:true}).populate('category','name shortDescription');
 
