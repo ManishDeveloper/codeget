@@ -84,7 +84,7 @@ const QuestionScreen = ({match}) => {
                     <Button onClick={sidebarToogleHandler}>Show</Button>
                     </div>
                     <div className="answer-box">
-                        <p style={{fontSize:"18.5px",marginBottom:'20px'}}><pre><strong>{currentQuestion+1}:</strong> {showQuestion[currentQuestion].question}</pre></p>
+                        <p style={{fontSize:"20px",marginBottom:'20px',wordSpacing:'-3px'}}><pre><strong>{currentQuestion+1}:</strong> {showQuestion[currentQuestion].question}</pre></p>
                     <SyntaxHighlighter className="p-3" language="javascript" style={dark}>
                         {showQuestion[currentQuestion].answer}
                     </SyntaxHighlighter>
