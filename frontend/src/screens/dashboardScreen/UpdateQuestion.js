@@ -48,10 +48,15 @@ const UpdateQuestion = ({updateQuiz,quizId}) => {
                         <Form.Label>Answer</Form.Label>
                         <Form.Control as="textarea" name="answer" value={answer} onChange={changeFields} rows={6} />
                     </Form.Group>
-
-                    <Button variant="primary" type="submit">
+                    <div className="buttons mt-5">
+                        <Button variant="primary" type="submit" className="mr-3">
                         Update
                     </Button>
+                    <Button style={{background:'#bcbcbc'}} variant="light" onClick={()=>{history.push("/dashboard/home")}}>
+                        Cancel
+                    </Button>
+                    </div>
+                    
                 </Form>
         </div>
     )

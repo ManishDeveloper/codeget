@@ -77,8 +77,20 @@
   background-color: #f7f7f9;
   border-color: #5a5a5a;
   outline: 0;
+}
+
+.quiz-search-box{
   box-shadow: 0 0 0 0.1rem rgb(26 26 26 / 25%);
 }
+
+.quiz-search-box input:focus{
+  box-shadow: none;
+}
+
+.quiz-search-box .input-group-prepend{
+  cursor: pointer;
+}
+
 
 pre{
   white-space: pre-wrap !important;
