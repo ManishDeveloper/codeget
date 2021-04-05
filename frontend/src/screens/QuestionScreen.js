@@ -20,9 +20,9 @@ const QuestionScreen = ({match}) => {
     
     const {loading, questionsList} = useSelector(state=>state.questions);
 
-    const start = (Number(match.params.partNum)-1)*5;
+    const start = (Number(match.params.partNum)-1)*50;
 
-    const end = Number(match.params.partNum)*5;
+    const end = Number(match.params.partNum)*50;
 
     const quizPart = questionsList.slice(start, end);
 

@@ -18,7 +18,7 @@ const LevelScreen = ({match}) => {
     let totalPart = 1;
 
     if(!loading){
-        totalPart = questionsList.length < 5 ? 1 : Number(Math.ceil(questionsList.length/5));
+        totalPart = questionsList.length < 50 ? 1 : Number(Math.ceil(questionsList.length/50));
     }
 
     return (
@@ -39,7 +39,7 @@ const LevelScreen = ({match}) => {
                        {[...Array(totalPart).keys()].map((index)=>(
                            <tr key={index}>
                                <td className="align-middle"><Link to={`/question/${index+1}/${match.params.id}`}><h5>Part {index+1} <br visible="xs" /></h5>
-                               </Link><h6>({`${index > 0 ? index*5+1 : index} - ${totalPart === index+1 ? questionsList.length :  (index+1)*5}`})</h6> </td>
+                               </Link><h6>({`${index > 0 ? index*50+1 : index} - ${totalPart === index+1 ? questionsList.length :  (index+1)*50}`})</h6> </td>
 
                                <td>
                                   <Link style={{padding:'10px 20px'}} to={`/question/${index+1}/${match.params.id}`} className="btn btn-dark">Start</Link>
