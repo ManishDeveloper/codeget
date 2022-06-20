@@ -8,7 +8,7 @@ const RegisterScreen = () => {
         <section className="landing">
             <div className="dark-overlay">
                 <div className="login-form">
-                    <h4><i className="fas fa-user"></i> Register User</h4>
+                    <h4><i className="fas fa-user"></i> Register User 2</h4>
                 <Form>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Name</Form.Label>
