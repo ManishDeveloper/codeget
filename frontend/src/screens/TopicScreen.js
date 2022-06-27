@@ -17,7 +17,7 @@ const TopicScreen = () => {
 
     return (
         <>
-            <section className="landing" style={{'height':'91.1vh'}}>
+            <section className="landing">
             <div className="dark-overlay"></div>
                 {loading ? <Loader customColor="light" /> : (
                     <Container className="text-center py-5">

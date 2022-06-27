@@ -6,6 +6,7 @@
 .landing{
   background-image: url("./img/showcase.jpg");
   position: relative;
+  min-height: 91.1vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -26,6 +27,7 @@
     color: #fff;
     display: flex;
     text-align: center;
+    position: relative;
     flex-flow: column;
     justify-content: center;
     align-items: center;

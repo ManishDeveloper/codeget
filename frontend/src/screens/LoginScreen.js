@@ -30,7 +30,7 @@ const LoginScreen = () => {
     return (
         <>
         {loading ? <Loader /> : isAuthenticated ? <Redirect to="/topic" /> : (
-            <section className="landing" style={{'height':'91.1vh'}}>
+            <section className="landing">
             <div className="dark-overlay"></div>
                 <div className="login-form">
                     <h4><i className="fas fa-user"></i> Login User</h4>
