@@ -114,7 +114,6 @@
   cursor: pointer;
 }
 
-
 pre{
   white-space: pre-wrap !important;
 }
@@ -222,6 +221,14 @@ strong{
 
 .sidebar-mobile{
   display: block;
+}
+
+td pre{
+  color: #55595c;
+  font-size:16px;
+  text-align: left;
+  letter-spacing: normal;
+  margin-bottom: 0;
 }
 
 @media (max-width:576px){

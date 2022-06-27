@@ -60,7 +60,7 @@ const QuestionsList = ({match}) => {
                        {QuestionTrim.map((question, index)=>(
                            <tr key={index}>
                                <td>{page===1 ? index+1 : ((page-1)*50)+(index+1)}</td>
-                               <td className='font17'>{question.question}</td>
+                               <td className='font17'><pre>{question.question}</pre></td>
                                <td>
                                   <Link target="_blank" style={{padding:'5px 12px'}} to={`/answer/${question._id}`} className="btn btn-dark">Show</Link>
                                </td>
