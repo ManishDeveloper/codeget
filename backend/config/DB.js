@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-mongoose.connect(process.env.MONGO_URI,{
+mongoose.connect(process.env.MONGO_LOCAL_URI,{
     useFindAndModify:true,
     useNewUrlParser:true,
     useUnifiedTopology:true,
     useCreateIndex:true
 })
-.then(()=>console.log(`DB connected..`))
+.then((conn)=>console.log(`DB connected on ${conn.connection.host}`))
 .catch(err=>console.log(err));

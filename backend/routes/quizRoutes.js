@@ -4,6 +4,7 @@ const {check,validationResult} = require("express-validator");
 const mongoose = require("mongoose");
 const auth = require("../middleware/auth");
 const Category = require("../models/categoryModel");
+const Userquiz = require("../models/userQuiz");
 const Quiz = require("../models/quizModel");
 
 
@@ -104,6 +105,94 @@ router.post('/add/:category',[auth,
         console.log(error.message);
         return res.status(500).json({error:'Server Error'});
     }
+});
+
+
+//@route    POST /api/quiz/user/done/:quizId
+//@desc     Quiz done by user
+//@access   Private
+router.post('/user/done/:quizId',auth, 
+    async (req,res)=>{
+    
+    try {
+
+        let findUser = await Userquiz.findOne({user:req.user.id});
+
+        if(!findUser){
+            let addNewUser = await new Userquiz({user:req.user.id,quizDone:req.params.quizId})
+
+            await addNewUser.save();
+
+            return res.status(201).json(addNewUser);
+        }
+
+        await findUser.quizDone.push(req.params.quizId);
+
+        await findUser.save();
+        
+        return res.status(200).json(findUser);
+        
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).json({error:'Server Error'});
+    }
+});
+
+
+//@route    DELETE /api/quiz/user/done/:quizId
+//@desc     Quiz done remove by user
+//@access   Private
+router.delete('/user/done/:quizId',auth, 
+    async (req,res)=>{
+    
+    try {
+
+        let findUser = await Userquiz.findOne({user:req.user.id});
+
+
+        //return res.status(200).json(findUser.quizDone.indexOf(req.params.quizId));
+
+        if(findUser.quizDone.indexOf(req.params.quizId) === -1){
+
+            return res.status(404).json({error:'Not Done yet now.'})
+        }
+
+        findUser.quizDone = await findUser.quizDone.filter(quiz=> quiz !== req.params.quizId);
+
+        await findUser.save();
+
+        return res.status(200).json(findUser);
+        
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).json({error:'Server Error'});
+    }
+});
+
+
+//@route    POST /api/quiz/user/done/
+//@desc     get Quiz done by user
+//@access   Private
+router.put('/user/done',auth, async (req,res)=>{
+    
+    try {
+
+        //let alreadyAdd = await Userquiz.find({quizDone:req.params.quizId});
+
+        let getDoneQuiz = await Userquiz.findOne({user:req.user.id});
+
+        if(!getDoneQuiz){
+            return res.status(200).json({quizDone:[],user:req.user.id})
+
+        }
+        
+        return res.status(200).json(getDoneQuiz);
+        
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).json({error:'Server Error'});
+    }
+
 });
 
 

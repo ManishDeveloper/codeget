@@ -1,4 +1,4 @@
-import {QUESTION_REQUEST,QUESTION_SUCCESS,QUESTION_FAIL} from "../types";
+import {QUESTION_REQUEST,QUESTION_SUCCESS,QUESTION_FAIL,SINGLE_QUESTION_REQUEST,SINGLE_QUESTION_SUCCESS,SINGLE_QUESTION_FAIL,DONE_QUESTION_REQUEST,DONE_QUESTION_SUCCESS,DONE_QUESTION_FAIL,SEND_DONE_QUESTION_REQUEST,SEND_DONE_QUESTION_SUCCESS,SEND_DONE_QUESTION_FAIL,REMOVE_DONE_QUESTION_REQUEST,REMOVE_DONE_QUESTION_SUCCESS,REMOVE_DONE_QUESTION_FAIL} from "../types";
 import axios from "axios";
 
 //get question
@@ -16,5 +16,79 @@ export const getQuestion = (category) => async dispatch => {
     } catch (error) {
         console.log(error.message);
         dispatch({type:QUESTION_FAIL});
+    }
+}
+
+//get Single question
+export const getSingleQuestion = (quizId) => async dispatch => {
+
+    try {
+        dispatch({type:SINGLE_QUESTION_REQUEST});
+
+        let res = await axios.get(`/api/quiz/${quizId}`)
+
+        dispatch({
+            type:SINGLE_QUESTION_SUCCESS,
+            payload:res.data
+        })
+    } catch (error) {
+        console.log(error.message);
+        dispatch({type:SINGLE_QUESTION_FAIL});
+    }
+}
+
+//Send Done Question
+export const sendDoneQuestion = (id) => async dispatch => {
+
+    try {
+        dispatch({type:SEND_DONE_QUESTION_REQUEST});
+
+        let res = await axios.post(`/api/quiz/user/done/${id}`)
+
+        dispatch({
+            type:SEND_DONE_QUESTION_SUCCESS,
+            payload:res.data
+        })
+    } catch (error) {
+        console.log(error.message);
+        dispatch({type:SEND_DONE_QUESTION_FAIL});
+    }
+}
+
+
+//Remove Done Question
+export const removeDoneQuestion = (id) => async dispatch => {
+
+    try {
+        dispatch({type:REMOVE_DONE_QUESTION_REQUEST});
+
+        let res = await axios.delete(`/api/quiz/user/done/${id}`)
+
+        dispatch({
+            type:REMOVE_DONE_QUESTION_SUCCESS,
+            payload:res.data
+        })
+    } catch (error) {
+        console.log(error.message);
+        dispatch({type:REMOVE_DONE_QUESTION_FAIL});
+    }
+}
+
+
+//Get Done Question
+export const getDoneQuestion = () => async dispatch => {
+
+    try {
+        dispatch({type:DONE_QUESTION_REQUEST});
+
+        let res = await axios.put(`/api/quiz/user/done`)
+
+        dispatch({
+            type:DONE_QUESTION_SUCCESS,
+            payload:res.data
+        })
+    } catch (error) {
+        console.log(error.message);
+        dispatch({type:DONE_QUESTION_FAIL});
     }
 }

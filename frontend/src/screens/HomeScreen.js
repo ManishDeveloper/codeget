@@ -11,7 +11,7 @@ const HomeScreen = () => {
     return (
         <> {loading ? <Loader /> : isAuthenticated ? <Redirect to="/topic" /> : (
             <section className="landing">
-                <div className="dark-overlay">
+                <div className="dark-overlay"></div>
                     <div className="landing-inner">
                         <h1>Welcome To Codeget</h1>
                         <p>Pracitce Interview Question of Many Programming Languages</p>
@@ -20,8 +20,6 @@ const HomeScreen = () => {
                             <Link className="btn btn-light" to="/register">Register</Link>
                         </div>
                     </div>
-                </div>
-
             </section>
         ) }
             

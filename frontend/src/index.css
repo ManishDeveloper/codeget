@@ -5,15 +5,15 @@
 
 .landing{
   background-image: url("./img/showcase.jpg");
-  height: 91.2vh;
   position: relative;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-attachment: fixed;
 }
 
 .dark-overlay {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.3);
   position: absolute;
   top: 0;
   left: 0;
@@ -36,7 +36,23 @@
   font-size: 56px;
   font-weight: 900;
 }
-
+.ques-check{
+  font-size:22px;
+}
+.mounseHand{
+  cursor: pointer;
+}
+.complete-box{
+    color: #1a1a1a;
+    font-weight: bold;
+    font-size: 16px;
+}
+.font17{
+  font-size: 17px !important;
+}
+.ques-check.active{
+  color:#008000;
+}
 .landing-inner p{
   font-size: 20px;
 }

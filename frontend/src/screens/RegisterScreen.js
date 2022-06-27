@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 const RegisterScreen = () => {
     return (
         <>
-        <section className="landing">
-            <div className="dark-overlay">
+        <section className="landing" style={{'height':'91.1vh'}}>
+            <div className="dark-overlay"></div>
                 <div className="login-form">
                     <h4><i className="fas fa-user"></i> Register User</h4>
                 <Form>
@@ -39,7 +39,6 @@ const RegisterScreen = () => {
                     </Button>
                 </Form>
                 </div>
-            </div>
         </section>
         </>
     )

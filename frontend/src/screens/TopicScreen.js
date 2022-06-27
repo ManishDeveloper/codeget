@@ -17,25 +17,23 @@ const TopicScreen = () => {
 
     return (
         <>
-            <section className="landing">
-            <div className="dark-overlay">
+            <section className="landing" style={{'height':'91.1vh'}}>
+            <div className="dark-overlay"></div>
                 {loading ? <Loader customColor="light" /> : (
-                    <Container className="text-center my-5">
+                    <Container className="text-center py-5">
                     <Row>
                         {categories.map((category,index)=>(
                             <Col key={index} md={4} className="d-flex mb-4">
                             <div className="language-box">
                                 <h1 className="language-heading">{category.name}</h1>
                                 <p className="language-description">{category.shortDescription.slice(0,60)}...</p>
-                                <Link to={`level/${category._id}`} className="btn btn-primary language-button">Start Pracitce</Link>
+                                <Link to={`questions/${category._id}`} className="btn btn-primary language-button">Start Pracitce</Link>
                             </div>
                         </Col>
                         ))}
                     </Row>
                 </Container>
                 )}
-                
-            </div>
             </section>
         </>
     )
