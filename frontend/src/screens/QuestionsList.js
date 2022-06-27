@@ -47,6 +47,11 @@ const QuestionsList = ({match}) => {
             {(loading || doneLoading) ? <Loader customColor="light" /> : <Container className="text-center py-5">
                     <Row>
                         <Col md={12} lg={12} className="m-auto">
+                        <Pagination className='justify-content-end'>
+                        {[...Array(totalPart).keys()].map((pages,index)=>(
+                            <Pagination.Item key={index} active={page === (index+1)} onClick={()=>loadPages(index+1)}>{index+1}</Pagination.Item>
+                        ))}
+                        </Pagination>
                         <Table variant="light" striped bordered hover>
                     <thead style={{backgroundColor:'#555555',color:'#ffffff'}}>
                         <tr>
