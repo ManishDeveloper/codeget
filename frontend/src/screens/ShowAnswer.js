@@ -34,13 +34,6 @@ const ShowAnswer = ({match}) => {
     
     const {loading, doneLoading, singleQuestion,doneQuestion} = useSelector(state=>state.questions);
 
-    //console.log(doneQuestion.quizDone.indexOf(match.params.qusId.toString()) !== -1);
-
-    if(!doneLoading){
-        console.log(doneQuestion.quizDone.indexOf(match.params.qusId) !== -1);
-    }
-    
-   
    
     return (
         <>
@@ -51,7 +44,7 @@ const ShowAnswer = ({match}) => {
                     <div className="top-button my-4 px-3 d-none">
                     </div>
                     <div className="answer-box">
-                    <pre style={{fontSize:"18px",marginBottom:'20px',wordSpacing:'-3px'}}>{singleQuestion.question}</pre>
+                    <pre style={{fontSize:"18px",marginBottom:'20px',wordSpacing:'-3px',letterSpacing:'normal'}}>{singleQuestion.question}</pre>
                     <SyntaxHighlighter className="p-3" language="javascript" style={dark}>
                         {singleQuestion.answer}
                     </SyntaxHighlighter>
