@@ -34,6 +34,10 @@
     align-items: center;
 }
 
+.spinner-box{
+  padding-top:100px;
+}
+
 .landing-inner h1{
   color:#fff;
   font-size: 56px;
