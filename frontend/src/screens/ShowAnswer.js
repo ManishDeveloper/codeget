@@ -4,7 +4,7 @@ import { Container, Row,Col,Form } from 'react-bootstrap';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { dark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import Loader from '../components/Loader';
-import { getSingleQuestion, sendDoneQuestion, getDoneQuestion, removeDoneQuestion } from '../redux/actions/questionActions';
+import { getSingleQuestion, sendDoneQuestion, getDoneQuestion, removeDoneQuestion, updateQuizLevel } from '../redux/actions/questionActions';
 
 const ShowAnswer = ({match}) => {
 
@@ -31,9 +31,14 @@ const ShowAnswer = ({match}) => {
         }
 
     }
+
+    const levelHandler = (e) => {
+
+        dispatch(updateQuizLevel(match.params.qusId,e.target.value));
+
+    }
     
     const {loading, doneLoading, singleQuestion,doneQuestion} = useSelector(state=>state.questions);
-
    
     return (
         <>
@@ -56,6 +61,16 @@ const ShowAnswer = ({match}) => {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicRadio">
                             <Form.Check type="radio" value="no" onClick={doneHandler} name="done" label="No" defaultChecked={doneQuestion.quizDone.indexOf(match.params.qusId) === -1} />
+                        </Form.Group>
+                    </Form>
+
+                    <Form className='complete-box'>
+                        <Form.Label>Important: </Form.Label>
+                        <Form.Group className="mb-3" controlId="formBasicRadio">
+                            <Form.Check type="radio" value="2" onClick={levelHandler} name="done" label="Yes" defaultChecked={singleQuestion.level === 2}  />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicRadio">
+                            <Form.Check type="radio" value="1" onClick={levelHandler} name="done" label="No" defaultChecked={singleQuestion.level === 1} />
                         </Form.Group>
                     </Form>
                     </div>

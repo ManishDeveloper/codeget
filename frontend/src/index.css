@@ -53,6 +53,9 @@
     color: #1a1a1a;
     font-weight: bold;
     font-size: 16px;
+    display: flex;
+    width: 240px;
+    justify-content: space-between;
 }
 .font17{
   font-size: 17px !important;

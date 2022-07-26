@@ -1,11 +1,11 @@
 import React,{useState,useEffect} from 'react'
-import { Container,Row,Col,Table,Pagination} from 'react-bootstrap';
+import { Container,Row,Col,Table,Pagination,Alert} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import {useDispatch,useSelector} from 'react-redux';
 import Loader from '../components/Loader';
-import {getDoneQuestion, getQuestion} from "../redux/actions/questionActions";
+import {getDoneQuestion, getImpQuestion} from "../redux/actions/questionActions";
 
-const QuestionsList = ({match}) => {
+const ImportantQuiz = ({match}) => {
     const [page,setPage] = useState(1);
 
     const dispatch = useDispatch();
@@ -35,26 +35,25 @@ const QuestionsList = ({match}) => {
     }
     
     useEffect(async ()=>{
-        await dispatch(getQuestion(match.params.id));
+        await dispatch(getImpQuestion(match.params.catId));
         await dispatch(getDoneQuestion());
     },[]);
+
+    console.log(questionsList);
 
 
     return (
         <>
             <section className="landing">
             <div className="dark-overlay"></div>
-            {(loading || doneLoading) ? <Loader customColor="light" /> : <Container className="text-center py-5">
+            {(loading || doneLoading) ? <Loader customColor="light" /> : (questionsList.length > 0) ? <Container className="text-center py-5">
                     <Row>
                         <Col md={12} lg={12} className="m-auto">
-                        <div className='d-flex justify-content-between align-items-start'>
-                            <Link target="_blank" style={{padding:'5px 12px'}} to={`/important/${match.params.id}`} className='btn btn-success'>Important Question</Link>
-                            <Pagination>
-                            {[...Array(totalPart).keys()].map((pages,index)=>(
-                                <Pagination.Item key={index} active={page === (index+1)} onClick={()=>loadPages(index+1)}>{index+1}</Pagination.Item>
-                            ))}
-                            </Pagination>
-                        </div>
+                        <Pagination className='justify-content-end'>
+                        {[...Array(totalPart).keys()].map((pages,index)=>(
+                            <Pagination.Item key={index} active={page === (index+1)} onClick={()=>loadPages(index+1)}>{index+1}</Pagination.Item>
+                        ))}
+                        </Pagination>
                         
                         <Table variant="light" striped bordered hover>
                     <thead style={{backgroundColor:'#555555',color:'#ffffff'}}>
@@ -89,10 +88,11 @@ const QuestionsList = ({match}) => {
                     </Pagination>
                     </Col>   
                     </Row>
-                </Container>}
+                </Container> : <div className='d-flex justify-content-center align-items-center' style={{minHeight:'90vh'}}><Alert variant="info">No Important Question added in this Section!                
+              </Alert></div>}
             </section>
         </>
     )
 }
 
-export default QuestionsList;
+export default ImportantQuiz;

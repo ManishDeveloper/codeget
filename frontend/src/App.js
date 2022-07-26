@@ -16,6 +16,7 @@ import { ToastContainer, Slide} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import QuestionsList from './screens/QuestionsList';
 import ShowAnswer from './screens/ShowAnswer';
+import ImportantQuiz from './screens/ImportantQuiz';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <PrivateRoute exact path="/questions/:id" component={QuestionsList} />
         <PrivateRoute exact path="/question/:partNum/:categoryId" component={QuestionScreen} />
         <PrivateRoute exact path="/answer/:qusId" component={ShowAnswer} />
+        <PrivateRoute exact path="/important/:catId" component={ImportantQuiz} />
         <Route exact path="/login" component={LoginScreen} />
         <Route exact path="/register" component={RegisterScreen} />
       </Switch>

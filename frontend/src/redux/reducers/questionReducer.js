@@ -1,4 +1,4 @@
-import {QUESTION_REQUEST,QUESTION_SUCCESS,QUESTION_FAIL,SINGLE_QUESTION_REQUEST,SINGLE_QUESTION_SUCCESS,SINGLE_QUESTION_FAIL,DONE_QUESTION_REQUEST,DONE_QUESTION_SUCCESS,DONE_QUESTION_FAIL,SEND_DONE_QUESTION_REQUEST,SEND_DONE_QUESTION_SUCCESS,SEND_DONE_QUESTION_FAIL,REMOVE_DONE_QUESTION_REQUEST,REMOVE_DONE_QUESTION_SUCCESS,REMOVE_DONE_QUESTION_FAIL} from "../types";
+import {QUESTION_REQUEST,QUESTION_SUCCESS,QUESTION_FAIL,SINGLE_QUESTION_REQUEST,SINGLE_QUESTION_SUCCESS,SINGLE_QUESTION_FAIL,DONE_QUESTION_REQUEST,DONE_QUESTION_SUCCESS,DONE_QUESTION_FAIL,SEND_DONE_QUESTION_REQUEST,SEND_DONE_QUESTION_SUCCESS,SEND_DONE_QUESTION_FAIL,REMOVE_DONE_QUESTION_REQUEST,REMOVE_DONE_QUESTION_SUCCESS,REMOVE_DONE_QUESTION_FAIL,LEVEL_UPDATE_REQUEST,LEVEL_UPDATE_SUCCESS,LEVEL_UPDATE_FAIL} from "../types";
 
 const initialState = {
     loading:true,
@@ -24,6 +24,11 @@ const questionReducer = (state=initialState,action) => {
                 loading:true,
                 doneLoading:true
             }
+        case LEVEL_UPDATE_REQUEST:
+            return {
+                ...state,
+                loading:true
+            }
         case QUESTION_SUCCESS:
             return {
                 ...state,
@@ -47,6 +52,7 @@ const questionReducer = (state=initialState,action) => {
                         doneQuestion:payload
                     }
         case SINGLE_QUESTION_SUCCESS:
+        case LEVEL_UPDATE_SUCCESS:
             return {
                 ...state,
                 loading:false,
@@ -59,6 +65,7 @@ const questionReducer = (state=initialState,action) => {
         case DONE_QUESTION_FAIL:
         case SEND_DONE_QUESTION_FAIL:
         case REMOVE_DONE_QUESTION_FAIL:
+        case LEVEL_UPDATE_FAIL:
             return {
                 ...state,
                 loading:false,

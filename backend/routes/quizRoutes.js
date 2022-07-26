@@ -60,10 +60,15 @@ router.get('/category/:id',auth, async (req,res)=>{
 //@route    GET /api/quiz/:level/:id
 //@desc     Quiz By Category and Level
 //@access   Private
-router.get('/:level/:id',auth, async (req,res)=>{
+router.get('/:level/:id', async (req,res)=>{
 
     try {
+
         let question = await Quiz.find({category:req.params.id,level:req.params.level});
+
+        if(!question){
+            return res.status(404).json({error:'No Quiz Found!'});
+        }
 
         return res.status(200).json(question);
         
@@ -227,6 +232,36 @@ router.patch('/update/:id',[auth,
         let updateQuiz = await Quiz.findByIdAndUpdate(req.params.id,updateFields,{new:true}).populate('category','name shortDescription');
 
         return res.status(201).json(updateQuiz);
+        
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).json({error:'Server Error'});
+    }
+});
+
+
+
+//@route    POST /api/quiz/update/level/:id
+//@desc     Update Quiz Level
+//@access   Private
+router.patch('/update/level/:level/:id',auth, 
+    async (req,res)=>{
+    
+    try {
+
+        let findQuiz = await Quiz.findById(req.params.id);
+
+        if(!findQuiz){
+        return res.status(404).json({error:'No Quiz Found!'});
+        }
+
+        let levelNum = +req.params.level;
+
+        findQuiz.level = levelNum;
+
+        await findQuiz.save();
+
+        return res.status(201).json(findQuiz);
         
     } catch (error) {
         console.log(error.message);
