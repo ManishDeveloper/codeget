@@ -14,7 +14,7 @@ const HomeScreen = () => {
                 <div className="dark-overlay"></div>
                     <div className="landing-inner">
                         <h1>Welcome To Codeget</h1>
-                        <p>Pracitce Interview Question of Many Programming Languages</p>
+                        <p>Pracitce HTML, CSS, JAVASCRIPT to Improve your skills</p>
                         <div className="button">
                             <Link className="btn btn-primary mx-3" to="/login">Login</Link>
                             <Link className="btn btn-light" to="/register">Register</Link>
