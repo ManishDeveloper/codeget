@@ -40,12 +40,12 @@ export const getAllCategory = () => async dispatch => {
 
 
 //Add New Question
-export const addNewQuestion = (question,category,answer) => async dispatch => {
+export const addNewQuestion = (question,level,category,answer) => async dispatch => {
 
     try {
         await dispatch({type:ADD_QUESTION_REQUEST});
 
-    let res = await axios.post(`/api/quiz/add/${category}`,{question,answer});
+    let res = await axios.post(`/api/quiz/add/${category}`,{level,question,answer});
 
         await dispatch({
             type:ADD_QUESTION_SUCCESS,
