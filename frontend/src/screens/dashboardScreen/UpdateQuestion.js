@@ -6,13 +6,15 @@ import { updateQuestion } from '../../redux/actions/dashboardActions';
 
 const UpdateQuestion = ({updateQuiz,quizId}) => {
     const [formData,setFormData] = useState({
-    question:updateQuiz.question,description:"",categoryId:updateQuiz.category._id,answer:updateQuiz.answer});
+    question:updateQuiz.question,description:"",level:updateQuiz.level, categoryId:updateQuiz.category._id,answer:updateQuiz.answer});
 
     const history = useHistory();
 
     const dispatch = useDispatch();
 
-    const {question,categoryId,answer} = formData;
+    console.log(updateQuiz);
+
+    const {question,level,categoryId,answer} = formData;
 
     const categoryList = useSelector(state=>state.dashboardQuestions.categoryList);
 
@@ -22,7 +24,7 @@ const UpdateQuestion = ({updateQuiz,quizId}) => {
     }
     const addQuestionHandler = (e) => {
         e.preventDefault();
-        dispatch(updateQuestion(quizId,question,categoryId,answer));
+        dispatch(updateQuestion(quizId,+level,question,categoryId,answer));
         history.push("/dashboard/home");
     }
     return (
@@ -32,6 +34,16 @@ const UpdateQuestion = ({updateQuiz,quizId}) => {
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Question</Form.Label>
                         <Form.Control as="textarea" placeholder="Type Question" name="question" rows="3" value={question} onChange={changeFields} />
+                    </Form.Group>
+
+                    <Form.Group controlId="exampleForm.ControlSelect1">
+                        <Form.Label>Select Level</Form.Label>
+                        <Form.Control name="level" onChange={changeFields} as="select">
+                        <option value="">Select Level</option>
+                        <option value="1" selected={1===level}>Beginner</option>
+                        <option value="2" selected={2===level}>Intermediate</option>
+                        <option value="3" selected={3===level}>Advance</option>
+                        </Form.Control>
                     </Form.Group>
 
                     <Form.Group controlId="exampleForm.ControlSelect1">
