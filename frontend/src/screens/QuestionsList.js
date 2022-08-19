@@ -60,7 +60,7 @@ const QuestionsList = ({match}) => {
                     <thead style={{backgroundColor:'#555555',color:'#ffffff'}}>
                         <tr>
                         <th><h5 style={{color:'#ffffff'}}>Sl. No.</h5></th>
-                        <th><h5 style={{color:'#ffffff'}}>Questions ({`${numDoneQuestion}/${questionsList.length}`})
+                        <th><h5 style={{color:'#ffffff'}}>Questions1 ({`${numDoneQuestion}/${questionsList.length}`})
                         </h5></th>
                         <th><h5 style={{color:'#ffffff'}}>Answer</h5></th>
                         <th><h5 style={{color:'#ffffff'}}>Status</h5></th>
